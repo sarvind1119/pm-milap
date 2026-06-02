@@ -1,0 +1,21 @@
+{
+  "name": "pm-milap",
+  "version": "1.0.0",
+  "description": "PM-MILAP — PM Mission for Integrated Livelihood, Aspiration & Placement Portal",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node src/seed.js --reset",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "sql.js": "^1.10.3"
+  }
+}
