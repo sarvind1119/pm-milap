@@ -5,10 +5,10 @@
 
 const CFG = {
   enabled: (process.env.LLM_ENABLED ?? 'true') !== 'false',
-  apiKey: process.env.LLM_API_KEY || 'sk-class-2026',
-  baseURL: (process.env.LLM_BASE_URL || 'http://10.10.202.212:8000/v1').replace(/\/+$/, ''),
-  model: process.env.LLM_MODEL || 'openai/gpt-oss-20b',
-  // Local models (esp. 20B+) can be slow to first token — give them real time.
+  apiKey: process.env.LLM_API_KEY || process.env.GROQ_API_KEY || '',
+  baseURL: (process.env.LLM_BASE_URL || 'https://api.groq.com/openai/v1').replace(/\/+$/, ''),
+  model: process.env.LLM_MODEL || 'llama-3.1-8b-instant',
+  // Hosted models can still be slow on the first request — give them real time.
   timeout: Number(process.env.LLM_TIMEOUT_MS || 60000),
   // 'auto' tries response_format and retries without it if rejected; 'off' never sends it.
   jsonMode: (process.env.LLM_JSON_MODE || 'auto').toLowerCase(),

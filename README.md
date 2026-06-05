@@ -109,12 +109,12 @@ pm-milap/
 The matching engine, resume writer and bio generator all call an **OpenAI-compatible** chat-completions endpoint. Configuration lives in the environment (defaults are baked in):
 
 ```
-LLM_API_KEY   = sk-class-2026
-LLM_BASE_URL  = http://10.10.202.212:8000/v1
-LLM_MODEL     = openai/gpt-oss-20b
+LLM_API_KEY   = your-groq-api-key
+LLM_BASE_URL  = https://api.groq.com/openai/v1
+LLM_MODEL     = llama-3.1-8b-instant
 ```
 
-To point at a different provider/model, copy `.env.example` to `.env` and edit the `LLM_*` values, then restart. The LLM is abstracted behind `src/llm.js`, so the rest of the app is unaffected by the swap.
+To point at a different OpenAI-compatible provider/model, copy `.env.example` to `.env` and edit the `LLM_*` values, then restart. The LLM is abstracted behind `src/llm.js`, so the rest of the app is unaffected by the swap.
 
 ### Important: graceful offline fallback (by design)
 
@@ -124,7 +124,7 @@ To point at a different provider/model, copy `.env.example` to `.env` and edit t
 - match scores come from the heuristic scorer (skill overlap, trade fit, location, certification, availability),
 - the admin analytics page shows an **"LLM offline · deterministic fallback"** pill so the behavior is transparent.
 
-This means the configured endpoint above (a private class network address) does **not** need to be reachable for the demo to work — and in most environments it won't be. Everything you see is real, computed data; only the *phrasing* of resumes and match reasons changes when a live LLM is connected. To see live generation, connect a reachable OpenAI-compatible server and either reseed with `--llm` or click **"Regenerate with AI"** on a beneficiary profile.
+This means the configured endpoint above does **not** need to be reachable for the demo to work. Everything you see is real, computed data; only the *phrasing* of resumes and match reasons changes when a live LLM is connected. To see live generation, connect a reachable OpenAI-compatible server and either reseed with `--llm` or click **"Regenerate with AI"** on a beneficiary profile.
 
 ---
 
